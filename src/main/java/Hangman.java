@@ -3,10 +3,7 @@ import java.util.List;
 import java.util.Random;
 
 public class Hangman{
-  private String[] words = {"buffalo", "luxury", "oxygen", "rhythm", "scratch", "voodoo", "wizard", "zigzag", "jinx", "frizzled"};
-  private Integer randomInt = new Random().nextInt(words.length);
-  private String theWord = words[randomInt];
-  private String currentRevealedWord = theWord.replaceAll(".","-");
+  private String theWord;
 
   public Hangman(){
 
@@ -16,21 +13,36 @@ public class Hangman{
   //   currentRevealedWord = change;
   // }
 
-  public String getCurrentRevealedWord(){
+  public void assignTheWordARandomWord(){
+    String[] words = {"luxury", "oxygen", "rhythm", "scratch", "voodoo", "wizard", "zigzag", "jinx", "frizzled"};
+    Integer randomInt = new Random().nextInt(words.length);
+    theWord = words[randomInt];
+  }
+
+  public String initializeRevealWord(){
+    String currentRevealedWord = theWord.replaceAll(".","-");
     return currentRevealedWord;
   }
 
-  public Integer getRandomInt(){
-    return randomInt;
+  // public String getCurrentRevealedWord(){
+  //   return currentRevealedWord;
+  // }
+
+  // public Integer getRandomInt(){
+  //   return randomInt;
+  // }
+
+  public String getTheWord(){
+    return theWord;
   }
 
   public void setTheWord(String userWord){
     theWord = userWord;
   }
 
-  public String randomWord() {
-    return words[randomInt];
-  }
+  // public String randomWord() {
+  //   return words[randomInt];
+  // }
 
   public List<Integer> findPositions(char letter){
     List<Integer> allIndeces = new ArrayList<Integer>();
@@ -46,11 +58,17 @@ public class Hangman{
     return allIndeces;
   }
 
-  public void replacePositions(char letter) {
+  public String replacePositions(char letter, String currentRevealedWord) {
     List<Integer> theIndeces = findPositions(letter);
-    for (int i = 0; i< theIndeces.size(); i++){
+    // String currentRevealedWord = initializeRevealWord();
+    System.out.println("Initialized revealed word is " + currentRevealedWord);
+    for (int i = 0; i < theIndeces.size(); i++){
       int index = theIndeces.get(i);
-      currentRevealedWord = currentRevealedWord.substring(0, index)+letter+currentRevealedWord.substring(index+1);
+      System.out.println("Index value is: " + index);
+      System.out.println("Current revealed word is " + currentRevealedWord);
+      // currentRevealedWord = currentRevealedWord.substring(index) + letter;
+      currentRevealedWord = currentRevealedWord.substring(0, index)+letter+currentRevealedWord.substring(index+1, currentRevealedWord.length());
+      System.out.println("Current revealed word after is " + currentRevealedWord);
     }
     // for ( Integer index : theIndeces ) {
     //   // if(index != currentRevealedWord.length()){
@@ -59,6 +77,7 @@ public class Hangman{
     //   //   currentRevealedWord = currentRevealedWord.substring(0, index)+letter;
     //   // }
     // }
+    return currentRevealedWord;
   }
 
 }

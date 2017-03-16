@@ -11,24 +11,24 @@ public class HangmanTest {
     assertEquals(true, testHangman instanceof Hangman);
   }
 
-  @Test
-  public void Hangman_getsRandomInt_true(){
-    Hangman testHangman = new Hangman();
-    assertEquals(true, testHangman.getRandomInt() instanceof Integer);
-  }
+  // @Test
+  // public void Hangman_getsRandomInt_true(){
+  //   Hangman testHangman = new Hangman();
+  //   assertEquals(true, testHangman.getRandomInt() instanceof Integer);
+  // }
 
-  @Test
-  public void Hangman_pickRandomInteger_true() {
-    Hangman testHangman = new Hangman();
-    Integer wordIndex = testHangman.getRandomInt();
-    assertEquals(true, wordIndex instanceof Integer);
-   }
+  // @Test
+  // public void Hangman_pickRandomInteger_true() {
+  //   Hangman testHangman = new Hangman();
+  //   Integer wordIndex = testHangman.getRandomInt();
+  //   assertEquals(true, wordIndex instanceof Integer);
+  //  }
 
    @Test
    public void Hangman_pickRandomWord_true() {
      Hangman testHangman = new Hangman();
-     String word = testHangman.randomWord();
-     assertEquals(true, word instanceof String);
+     testHangman.assignTheWordARandomWord();
+     assertEquals(true, testHangman.getTheWord() instanceof String);
    }
 
    @Test
@@ -42,19 +42,19 @@ public class HangmanTest {
    @Test
    public void Hangman_checkSingleLetterInWord() {
      Hangman testHangman = new Hangman();
-     testHangman.setTheWord("cat");
+     testHangman.setTheWord("dog");
      List<Integer> expectedList = new ArrayList<Integer>();
      expectedList.add(1);
-     assertEquals(expectedList, testHangman.findPositions('a'));
+     assertEquals(expectedList, testHangman.findPositions('o'));
    }
 
    @Test
    public void Hangman_checkMultipleLettersInWord(){
      Hangman testHangman = new Hangman();
-     testHangman.setTheWord("abandon");
+     testHangman.setTheWord("afterparty");
      List<Integer> expectedList = new ArrayList<Integer>();
      expectedList.add(0);
-     expectedList.add(2);
+     expectedList.add(6);
      assertEquals(expectedList, testHangman.findPositions('a'));
    }
 
@@ -62,10 +62,10 @@ public class HangmanTest {
    public void Hangman_checkLettersReplaceDashes_String() {
      Hangman testHangman = new Hangman();
      testHangman.setTheWord("abandon");
+     String revealWord = testHangman.initializeRevealWord();
      String expectedString = "a-a----";
-     testHangman.replacePositions('a');
-     assertEquals(true,testHangman.getCurrentRevealedWord() instanceof String);
-     assertEquals(expectedString, testHangman.getCurrentRevealedWord());
+    //  assertEquals(true,testHangman.getCurrentRevealedWord() instanceof String);
+     assertEquals(expectedString, testHangman.replacePositions('a', revealWord));
    }
 
 
