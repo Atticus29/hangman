@@ -1,5 +1,7 @@
 import org.junit.*;
 import static org.junit.Assert.*;
+import java.util.List;
+import java.util.ArrayList;
 
 public class HangmanTest {
 
@@ -28,5 +30,43 @@ public class HangmanTest {
      String word = testHangman.randomWord();
      assertEquals(true, word instanceof String);
    }
+
+   @Test
+   public void Hangman_checkLetterNotInWord() {
+     Hangman testHangman = new Hangman();
+     testHangman.setTheWord("cat");
+     List<Integer> expectedList = new ArrayList<Integer>();
+     assertEquals(expectedList, testHangman.findPositions('g'));
+   }
+
+   @Test
+   public void Hangman_checkSingleLetterInWord() {
+     Hangman testHangman = new Hangman();
+     testHangman.setTheWord("cat");
+     List<Integer> expectedList = new ArrayList<Integer>();
+     expectedList.add(1);
+     assertEquals(expectedList, testHangman.findPositions('a'));
+   }
+
+   @Test
+   public void Hangman_checkMultipleLettersInWord(){
+     Hangman testHangman = new Hangman();
+     testHangman.setTheWord("abandon");
+     List<Integer> expectedList = new ArrayList<Integer>();
+     expectedList.add(0);
+     expectedList.add(2);
+     assertEquals(expectedList, testHangman.findPositions('a'));
+   }
+
+   @Test
+   public void Hangman_checkLettersReplaceDashes_String() {
+     Hangman testHangman = new Hangman();
+     testHangman.setTheWord("abandon");
+     String expectedString = "a-a----";
+     testHangman.replacePositions('a');
+     assertEquals(true,testHangman.getCurrentRevealedWord() instanceof String);
+     assertEquals(expectedString, testHangman.getCurrentRevealedWord());
+   }
+
 
 }
