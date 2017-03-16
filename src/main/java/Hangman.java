@@ -5,8 +5,8 @@ import java.util.Random;
 public class Hangman{
   private String theWord;
 
-  public Hangman(){
-
+  public Hangman(){ // String word
+    // theWord = word;
   }
 
   // public void setCurrentRevealedWord(String change){
@@ -38,6 +38,10 @@ public class Hangman{
 
   public void setTheWord(String userWord){
     theWord = userWord;
+  }
+
+  public boolean isWon(String queryWord){
+    return queryWord.equals(theWord);
   }
 
   // public String randomWord() {

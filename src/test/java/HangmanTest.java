@@ -68,5 +68,20 @@ public class HangmanTest {
      assertEquals(expectedString, testHangman.replacePositions('a', revealWord));
    }
 
+   @Test
+   public void Hangman_checkWhetherGameWon_true(){
+     Hangman testHangman = new Hangman();
+     testHangman.setTheWord("gaslight");
+     String revealWord = testHangman.initializeRevealWord();
+     revealWord = testHangman.replacePositions('g', revealWord);
+     revealWord = testHangman.replacePositions('a', revealWord);
+     revealWord = testHangman.replacePositions('s', revealWord);
+     revealWord = testHangman.replacePositions('l', revealWord);
+     revealWord = testHangman.replacePositions('i', revealWord);
+     revealWord = testHangman.replacePositions('h', revealWord);
+     revealWord = testHangman.replacePositions('t', revealWord);
+     assertEquals(true, testHangman.isWon(revealWord));
+   }
+
 
 }
